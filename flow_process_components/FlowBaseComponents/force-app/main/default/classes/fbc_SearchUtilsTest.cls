@@ -8,7 +8,7 @@ private class fbc_SearchUtilsTest {
 
     @testSetup
     static void setup() {
-        List<Profile> adminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+        List<Profile> adminProfile = [SELECT Id FROM Profile WHERE UserType = 'Standard' AND PermissionsAuthorApex = true LIMIT 1];
         User testUser = new User(Alias = 'test1', Email = 'testuser1@example.com', EmailEncodingKey = 'UTF-8', LastName = TEST_RECORD_NAME, LanguageLocaleKey = 'en_US', LocaleSidKey = 'en_US', ProfileId = adminProfile[0].Id, TimeZoneSidKey = 'America/Los_Angeles', UserName = TEST_RECORD_NAME);
         insert testUser;
         Group userGroup = new Group(Name = TEST_RECORD_NAME, type = 'Queue');
